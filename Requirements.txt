@@ -1,0 +1,6 @@
+dlib-bin==19.24.6
+face-recognition==1.3.0 --no-deps
+face-recognition-models==0.3.0
+click==8.2.1
+numpy==1.24.2
+Pillow==9.4.0
