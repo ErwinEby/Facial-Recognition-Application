@@ -2,6 +2,7 @@ from pathlib import Path
 import face_recognition
 import pickle
 from collections import Counter
+import argparse
 
 from PIL import Image, ImageDraw
 
@@ -32,6 +33,26 @@ def _display_face(draw, bounding_box, name):
 
 
 DEFAULT_ENCODINGS_PATH = Path("output/encodings.pkl")
+
+parser = argparse.ArgumentParser(description="Recognize faces in an image")
+parser.add_argument("--train", action="store_true", help="Train on input data")
+parser.add_argument(
+    "--validate", action="store_true", help="Validate trained model"
+)
+parser.add_argument(
+    "--test", action="store_true", help="Test model accuracy with an unknown image"
+)
+parser.add_argument(
+    "-m",
+    action="store",
+    default="hog",
+    choices=["hog", "cnn"],
+    help="Which model to use for training: hog (CPU), cnn (GPU)",
+)
+parser.add_argument(
+    "-f", action="store", help="Path to an image with an unknown face"
+)
+args = parser.parse_args()
 
 # all three check to see if a directories exists and makes them if they don't
 Path("training").mkdir(exist_ok=True)
@@ -119,3 +140,11 @@ def validate(model: str = "hog"):
             )
 
 validate()
+
+if __name__ == "__main__":
+    if args.train:
+        encode_known_faces(model=args.m)
+    if args.validate:
+        validate(model=args.m)
+    if args.test:
+        recognize_faces(image_location=args.f, model=args.m)
