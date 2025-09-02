@@ -139,7 +139,6 @@ def validate(model: str = "hog"):
                 image_location=str(filepath.absolute()), model=model
             )
 
-validate()
 
 if __name__ == "__main__":
     if args.train:
