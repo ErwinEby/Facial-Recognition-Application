@@ -109,6 +109,13 @@ def _recognize_face(unknown_encoding, loaded_encodings):
     if votes:
         return votes.most_common(1)[0][0]
  
-recognize_faces("unknown.jpg")
-recognize_faces("161871.jpg")
+def validate(model: str = "hog"):
+    valid_extensions = (".jpg", ".jpeg", ".png")
 
+    for filepath in Path("validation").rglob("*"):
+        if filepath.is_file() and filepath.suffix.lower() in valid_extensions:
+            recognize_faces(
+                image_location=str(filepath.absolute()), model=model
+            )
+
+validate()
