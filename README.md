@@ -1,14 +1,3 @@
-To create a README for your Facial Recognition Application, could you clarify a few details?
-
-What is the main purpose or use case for this project? (e.g., attendance system, security, demo, etc.)
-What libraries, frameworks, or models are used?
-Any installation or setup instructions you want included?
-Do you have sample input/output or screenshots?
-Are there any notable features or limitations?
-With your answers, I can generate a more tailored README. If you want a general template, let me know!
-make me a readme for this repo
-
-20 references
 Facial Recognition Application
 
 A Python-based application for facial recognition using classical and deep learning models. This project leverages the face_recognition library to train on known faces, validate model accuracy, and test images for identification.
